@@ -1,3 +1,4 @@
+require 'json'
 class SessionsController < Devise::SessionsController
   prepend_before_action :require_no_authentication, only: [:new, :create]
   prepend_before_action :allow_params_authentication!, only: :create
@@ -23,10 +24,20 @@ class SessionsController < Devise::SessionsController
     })
 
     @data = @twitch.auth(params[:code])
-    puts @data.inspect
     session[:access_token] = @data[:body]["access_token"]
-    puts "++++++++++++++++++++++"
-    puts session[:access_token].inspect
+
+    @user = Twitch.new access_token: session["access_token"]
+    user_json = @user.your_user().to_json
+    u = ActiveSupport::JSON.decode(user_json)
+
+    user = User.from_twitch(u)
+
+    if user.persisted?
+      sign_in_and_redirect user, :event => :authentication
+    else
+      puts user.errors.inspect
+      redirect_to sign_in_path
+    end
   end
 
   # GET /resource/sign_in
