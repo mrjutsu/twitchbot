@@ -5,22 +5,6 @@ class DashboardsController < ApplicationController
   # GET /dashboards.json
   def index
     @dashboards = Dashboard.all
-
-    client_id='jpkchasuwimpy25zlzgx6q0ve6kc75h'
-    state='6xqr72504rbfpwmbxuou9n7lytgaon2'
-    url="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=#{client_id}&redirect_uri=localhost:3000&scope=user_read&state=#{state}"
-    @twitch = Twitch.new({
-      client_id: client_id,
-      secret_key: state,
-      redirect_uri: "http://localhost:3000",
-      scope: ["user_read"]
-    })
-
-    @data = @twitch.auth(params[:code])
-    puts @data.inspect
-    session[:access_token] = @data[:body]["access_token"]
-    puts "++++++++++++++++++++++"
-    puts session[:access_token].inspect
   end
 
   # GET /dashboards/1
