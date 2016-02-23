@@ -35,8 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg'
 gem 'puma'
 gem 'devise'
-# gem 'omniauth-twitch', github: 'mrjutsu/omniauth-twitch'
 gem 'twitch', '~> 0.1.0'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
