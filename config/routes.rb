@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations"}
 
   devise_scope :user do
-
-    # get :sign_up, to: 'devise/registrations#new'
     get :sign_up, to: 'devise/registrations#new'#, :as => :new_user_session
     get :sign_in, to: 'devise/sessions#new'#, :as => :new_user_session
 
@@ -14,14 +12,7 @@ Rails.application.routes.draw do
 
     delete :sign_out, to: 'devise/sessions#destroy'#, :as => :destroy_user_session
 
-
-    # get :change_password, to: 'registrations#change_password'
-    # put :change_password, to: 'registrations#update_password'
-
-    # root to: 'dashboards#landing'
-    # get :search, to: 'dashboards#search'
     root to: 'dashboards#index'
-
   end
 
 
