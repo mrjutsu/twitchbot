@@ -11,6 +11,7 @@
   </thead>
 
   <tbody>
+    <%= link_to 'CERRAR SESION', destroy_user_session_path, method: :delete %>
     <% @dashboards.each do |dashboard| %>
       <tr>
         <td><%= dashboard.user %></td>
