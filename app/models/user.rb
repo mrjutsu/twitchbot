@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.set_token (session,user,token)
+    user.update_attributes( auth_token: token )
+  end
+
 end

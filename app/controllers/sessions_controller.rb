@@ -34,6 +34,7 @@ class SessionsController < Devise::SessionsController
     user = User.from_twitch(u)
 
     if user.persisted?
+      User.set_token( true, user, session[:access_token] )
       sign_in_and_redirect user, :event => :authentication
     else
       puts user.errors.inspect
@@ -60,6 +61,7 @@ class SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
+    User.set_token( false, current_user, nil )
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
     # set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
