@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   def self.from_twitch usuario
     u = User.where(email: usuario["body"]["email"]).first_or_create do |user|
       user.email = usuario["body"]["email"]
-      user.password = Devise.friendly_token[0,20]
       user.username = usuario["body"]["name"]
+      user.password = Devise.friendly_token[0,20]
     end
   end
 

@@ -1,2 +1,11 @@
 <h1>Listing Dashboards</h1>
+<div>
+  <iframe frameborder="0"
+        scrolling="no"
+        id="chat_embed"
+        src= <%= @chat %>
+        height="300"
+        width="500">
+  </iframe>
+</div>
 <%= link_to 'CERRAR SESION', destroy_user_session_path, method: :delete %>
