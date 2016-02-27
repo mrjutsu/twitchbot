@@ -10,9 +10,10 @@ class SessionsController < Devise::SessionsController
       client_id: ENV["client_id"],
       secret_key: ENV["state"],
       redirect_uri: ENV["redirect_uri"],
-      scope: ["user_read"]
+      scope: ["user_read","channel_editor","channel_commercial","channel_subscriptions","chat_login"]
     })
-    redirect_to @twitch.link
+    link = @twitch.link + "&force_verify=true"
+    redirect_to link
   end
 
   def twitch_sign_in
@@ -60,7 +61,7 @@ class SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    set_flash_message! :notice, :signed_out if signed_out
+    # set_flash_message! :notice, :signed_out if signed_out
     yield if block_given?
     respond_to_on_destroy
   end
