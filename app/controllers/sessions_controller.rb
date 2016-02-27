@@ -21,7 +21,7 @@ class SessionsController < Devise::SessionsController
       client_id: ENV["client_id"],
       secret_key: ENV["state"],
       redirect_uri: ENV["redirect_uri"],
-      scope: ["user_read"]
+      scope: ["user_read","channel_editor","channel_commercial","channel_subscriptions","chat_login"]
     })
 
     @data = @twitch.auth(params[:code])
