@@ -35,6 +35,7 @@ gem 'puma'
 gem 'devise'
 gem 'twitch', '~> 0.1.0'
 gem 'figaro'
+# gem 'twitch-chat'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

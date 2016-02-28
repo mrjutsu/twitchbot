@@ -13,9 +13,4 @@ class DashboardsController < ApplicationController
     def set_dashboard
       @dashboard = Dashboard.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dashboard_params
-      params.require(:dashboard).permit(:user_id)
-    end
 end
